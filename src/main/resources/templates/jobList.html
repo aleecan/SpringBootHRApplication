@@ -21,14 +21,15 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Project name</a>
+            <a class="navbar-brand" href="/">HR App</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li><a th:href="@{/admin/home}">Home</a></li>
+                <li><a th:href="@{/home}">Home</a></li>
                 <li class="active"><a th:href="@{/joblist}">Job List</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
+                <li><a style="color: crimson" th:utext="${userN}"></a></li>
                 <li><a th:href="@{/logout}"><b style="font-size: small">Logout</b></a></li>
             </ul>
         </div><!--/.nav-collapse -->
@@ -46,15 +47,18 @@
                         <th>Job Title</th>
                         <th>Job Description</th>
                         <th>Number of Hire</th>
+                        <th th:if="${role[0].role} == 'ADMIN'">Action</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="s : ${jobs}">
+                    <tr th:each="s : ${jobs}" th:if="${s.isActive} == 1">
                         <td th:text="|${s.id}|"></td>
                         <td th:text="|${s.jobTitle}|"></td>
                         <td th:text="|${s.jobDescription}|"></td>
                         <td th:text="|${s.numOfHire}|"></td>
+                        <td th:if="${role[0].role} == 'ADMIN'"><a th:href="@{'joblist/detail/' + ${s.id} }" class="btn"><i class="icon-align-justify"></i> <strong>Detail</strong></a></td>
                     </tr>
+
                     </tbody>
                     <tfoot>
                     <!--<tr>

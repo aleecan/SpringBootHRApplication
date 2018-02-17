@@ -15,4 +15,9 @@ public class JobServiceImpl implements JobService {
     public List<Job> findAll() {
         return jobRepository.findAll();
     }
+
+    @Override
+    public Job findById(int id) {
+        return jobRepository.findOne(id);
+    }
 }
