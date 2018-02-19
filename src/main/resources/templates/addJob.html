@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Registration Form</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/registration.css}"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">HR App</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a th:href="@{/home}">Home</a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div><!--/.container-fluid -->
+</nav>
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="panel-group">
+                <div class="h1">
+                    Add new Job
+                </div>
+                <div class="panel panel-primary">
+                    <form autocomplete="off" action="#" th:action="@{/joblist/add/ok}"
+                          th:object="${job}" method="post" class="form-horizontal"
+                          role="form"  style="padding: 3%;">
+                        <div class="form-group">
+                            <label>Job Title</label>
+                            <input type="text" th:field="*{jobTitle}" class="form-control" placeholder="Job Title" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Description</label>
+                            <input type="text" th:field="*{jobDescription}" class="form-control" placeholder="Description" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Number of Hire</label>
+                            <input type="text" th:field="*{numOfHire}" class="form-control" placeholder="Number of Hire" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Last Application Date</label>
+                            <input type="date" th:field="*{lastAppDateToMiliSecond}" class="form-control" placeholder="Last Application Date" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Is Active</label>
+                            <select th:field="*{isActive}">
+                                <option value="1">Active</option>
+                                <option value="0">Passive</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

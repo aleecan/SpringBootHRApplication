@@ -50,7 +50,7 @@
                 <th>Resume</th>
                 </thead>
                 <tbody>
-                <tr th:each="app : ${applicant}">
+                <tr th:each="app : ${applicant}" th:if="${app.getJob().getId()} == ${url}">
                     <td th:utext="${app.getName()}"></td>
                     <td th:utext="${app.getMail()}"></td>
                     <td th:utext="${app.getPhone()}"></td>

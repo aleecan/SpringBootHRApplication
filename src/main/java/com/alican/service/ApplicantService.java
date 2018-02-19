@@ -1,6 +1,8 @@
 package com.alican.service;
 
 import com.alican.models.Applicant;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 

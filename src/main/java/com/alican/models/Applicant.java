@@ -18,8 +18,8 @@ public class Applicant implements Serializable{
     private String toughts;
     private String resumePath;
 
-    @ManyToOne
-    @JoinColumn(name = "job_id" , foreignKey = @ForeignKey(name = "job_id_fk"))
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "job_id" , nullable = false)
     private Job job;
 
     public Job getJob() {

@@ -30,7 +30,6 @@ public class ApplyController{
         ModelAndView modelAndView = new ModelAndView();
         Applicant applicant = new Applicant();
         modelAndView.addObject("applicant", applicant);
-        applicant.setJob(detail);
         modelAndView.addObject("detail", detail.getJobDescription());
         modelAndView.setViewName("apply");
         System.out.println(applicant.toString());
@@ -41,7 +40,8 @@ public class ApplyController{
     public ModelAndView apply1(@Valid Applicant applicant , BindingResult bindingResult ){
         System.out.println("After Applied" + jobId);
         ModelAndView modelAndView = new ModelAndView();
-
+        Job detail = jobService.findById(jobId);
+        applicant.setJob(detail);
         /*Applicant userExists = applicantService.findApplicantByMail(applicant.getMail());
         if (userExists != null) {
             System.out.println("Kullanıcı Kaydedildi");
@@ -54,8 +54,6 @@ public class ApplyController{
             List<Job> jobList = jobService.findAll();
             modelAndView.addObject("jobs", jobList);
             modelAndView.setViewName("home");
-            Job detail = jobService.findById(jobId);
-            applicant.setJob(detail);
             int appId = applicantService.Add(applicant);
 
 

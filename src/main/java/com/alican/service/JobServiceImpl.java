@@ -20,4 +20,9 @@ public class JobServiceImpl implements JobService {
     public Job findById(int id) {
         return jobRepository.findOne(id);
     }
+
+    @Override
+    public Job add(Job job) {
+        return jobRepository.save(job);
+    }
 }

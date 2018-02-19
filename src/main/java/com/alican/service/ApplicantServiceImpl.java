@@ -28,4 +28,5 @@ public class ApplicantServiceImpl implements ApplicantService {
         return applicantRepository.findAll();
     }
 
+
 }
