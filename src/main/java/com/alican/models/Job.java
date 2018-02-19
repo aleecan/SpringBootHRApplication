@@ -1,12 +1,13 @@
 package com.alican.models;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 import java.util.Set;
 
 @Entity
 @Table(name = "job")
-public class Job {
+public class Job implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "job_id")
@@ -21,18 +22,6 @@ public class Job {
     private long lastAppDateToMiliSecond;
     @Column(name = "is_active")
     private int isActive;
-
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "join_job_applicant", joinColumns = @JoinColumn(name = "job_id"), inverseJoinColumns = @JoinColumn(name = "applicant_id"))
-    private Set<Applicant> applicants;
-
-    public Set<Applicant> getApplicants() {
-        return applicants;
-    }
-
-    public void setApplicants(Set<Applicant> applicants) {
-        this.applicants = applicants;
-    }
 
     public long getLastAppDateToMiliSecond() {
         return lastAppDateToMiliSecond;
@@ -91,7 +80,7 @@ public class Job {
                 ", numOfHire=" + numOfHire +
                 ", lastAppDateToMiliSecond=" + lastAppDateToMiliSecond +
                 ", isActive=" + isActive +
-                ", applicants=" + applicants +
+                ", applicants=" +
                 '}';
     }
 }

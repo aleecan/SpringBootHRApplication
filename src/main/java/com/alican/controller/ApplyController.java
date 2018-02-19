@@ -2,12 +2,8 @@ package com.alican.controller;
 
 import com.alican.models.Applicant;
 import com.alican.models.Job;
-import com.alican.models.JobApplicant;
 import com.alican.service.ApplicantService;
-import com.alican.service.JobApplicantService;
 import com.alican.service.JobService;
-import org.hibernate.Query;
-import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -16,7 +12,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Set;
 
 @Controller
 @RequestMapping("/applicant")
@@ -26,8 +21,6 @@ public class ApplyController{
     @Autowired
     private ApplicantService applicantService;
     public int jobId;
-    @Autowired
-    private JobApplicantService jobApplicantService;
 
     @RequestMapping(value = "/apply/{id}" , method = RequestMethod.GET)
     public ModelAndView apply(@PathVariable("id") int id ){
@@ -37,8 +30,10 @@ public class ApplyController{
         ModelAndView modelAndView = new ModelAndView();
         Applicant applicant = new Applicant();
         modelAndView.addObject("applicant", applicant);
+        applicant.setJob(detail);
         modelAndView.addObject("detail", detail.getJobDescription());
         modelAndView.setViewName("apply");
+        System.out.println(applicant.toString());
         return modelAndView;
     }
 
@@ -59,12 +54,9 @@ public class ApplyController{
             List<Job> jobList = jobService.findAll();
             modelAndView.addObject("jobs", jobList);
             modelAndView.setViewName("home");
+            Job detail = jobService.findById(jobId);
+            applicant.setJob(detail);
             int appId = applicantService.Add(applicant);
-            JobApplicant jobApplicant = new JobApplicant();
-            jobApplicant.setUserId(appId);
-            jobApplicant.setJobId(jobId);
-            jobApplicant.setId(1);
-            jobApplicantService.Add(jobApplicant);
 
 
 

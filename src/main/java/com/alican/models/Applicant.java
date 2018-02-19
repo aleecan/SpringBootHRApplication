@@ -1,11 +1,12 @@
 package com.alican.models;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Set;
 
 @Entity
 @Table(name = "applicant")
-public class Applicant {
+public class Applicant implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "applicant_id")
@@ -16,6 +17,18 @@ public class Applicant {
     private String address;
     private String toughts;
     private String resumePath;
+
+    @ManyToOne
+    @JoinColumn(name = "job_id" , foreignKey = @ForeignKey(name = "job_id_fk"))
+    private Job job;
+
+    public Job getJob() {
+        return job;
+    }
+
+    public void setJob(Job job) {
+        this.job = job;
+    }
 
     public int getId() {
         return id;
@@ -83,6 +96,7 @@ public class Applicant {
                 ", address='" + address + '\'' +
                 ", toughts='" + toughts + '\'' +
                 ", resumePath='" + resumePath + '\'' +
+                ", job=" + job +
                 '}';
     }
 }

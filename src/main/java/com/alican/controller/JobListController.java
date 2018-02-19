@@ -1,8 +1,10 @@
 package com.alican.controller;
 
+import com.alican.models.Applicant;
 import com.alican.models.Job;
 import com.alican.models.Role;
 import com.alican.models.User;
+import com.alican.service.ApplicantService;
 import com.alican.service.JobService;
 import com.alican.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,10 @@ public class JobListController {
     @Autowired
     private JobService jobService;
 
+    @Autowired
+    private ApplicantService applicantService;
+
+
     @RequestMapping(value="/joblist", method = RequestMethod.GET)
     public ModelAndView jobList(){
         ModelAndView modelAndView = new ModelAndView();
@@ -41,10 +47,12 @@ public class JobListController {
     @RequestMapping(value="/joblist/detail/{id}", method = RequestMethod.GET)
     public ModelAndView detail(@PathVariable("id") int id){
         ModelAndView modelAndView = new ModelAndView();
+        List<Applicant> appList = applicantService.find();
         Job detail = new Job();
         detail = jobService.findById(id);
         System.out.println(detail.getJobDescription());
-        modelAndView.addObject("detail", detail.getJobDescription());
+        modelAndView.addObject("detail", detail.getJobTitle());
+        modelAndView.addObject("applicant", appList);
         modelAndView.setViewName("detail");
         return modelAndView;
     }

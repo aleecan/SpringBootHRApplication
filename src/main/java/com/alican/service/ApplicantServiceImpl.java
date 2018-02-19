@@ -5,6 +5,8 @@ import com.alican.repository.ApplicantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service("applicantService")
 public class ApplicantServiceImpl implements ApplicantService {
 
@@ -20,4 +22,10 @@ public class ApplicantServiceImpl implements ApplicantService {
     public int Add(Applicant applicant) {
         return applicantRepository.save(applicant).getId();
     }
+
+    @Override
+    public List<Applicant> find() {
+        return applicantRepository.findAll();
+    }
+
 }

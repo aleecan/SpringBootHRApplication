@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
 
-@Repository
+@Repository("applicantRepository")
 public interface ApplicantRepository extends JpaRepository<Applicant, Integer>{
     Applicant findByMail(String mail);
 }
