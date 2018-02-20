@@ -3,11 +3,13 @@ package com.alican.service;
 import com.alican.models.Job;
 import com.alican.repository.JobRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service("jobService")
 public class JobServiceImpl implements JobService {
+    @Qualifier("jobRepository")
     @Autowired
     private JobRepository jobRepository;
 

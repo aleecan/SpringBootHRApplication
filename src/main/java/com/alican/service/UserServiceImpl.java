@@ -5,6 +5,7 @@ import com.alican.models.User;
 import com.alican.repository.RoleRepository;
 import com.alican.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 

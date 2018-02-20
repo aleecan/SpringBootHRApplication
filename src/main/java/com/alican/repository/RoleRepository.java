@@ -9,5 +9,5 @@ import javax.transaction.Transactional;
 @Repository("roleRepository")
 @Transactional
 public interface RoleRepository extends JpaRepository<Role , Integer> {
-    Role findByRole(String admın);
+    Role findByRole(String admin);
 }

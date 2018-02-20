@@ -57,8 +57,7 @@
                     <td th:utext="${app.getAddress()}"></td>
                     <td th:utext="${app.getToughts()}"></td>
                     <td>
-                        <button type="button" class="btn btn-success btn-sm">View</button>
-                        <button type="button" class="btn btn-primary btn-sm">Download</button>
+                        <a th:href="@{'/images/' + ${app.getResumePath()} }" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-download-alt"></span> Download</a>
                     </td>
                 </tr>
                 </tbody>
