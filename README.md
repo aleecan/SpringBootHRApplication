@@ -1,3 +1,3 @@
-# HRApplication
+# Human Resources Application
 # Use /login path to login as HR Manager
-#Firstly run insert_roles.sql in resources/db
+# Firstly run insert_roles.sql in resources/db
